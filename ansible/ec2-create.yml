@@ -10,7 +10,7 @@
       keypair:             ram-keypair # pem file name
       sg_group:            new
       count_value:         2
-      ec2_state:           absent
+      ec2_state:           present
 
   tasks:
 
