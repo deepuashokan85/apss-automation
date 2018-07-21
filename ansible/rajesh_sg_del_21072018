@@ -1,0 +1,21 @@
+---
+- name:                    Delete Security group
+  hosts:                   localhost
+  gather_facts:            False
+
+  vars:
+      region:              us-east-2
+      name:                SG1
+      vpc_id:              vpc-b99ad2d1
+      group_id:            sg-0408a60bbf4d9c3be
+      state:               absent
+
+  tasks:
+    - name: security group deletion
+      ec2_group:
+        name: "{{ name }}"
+        description: security group deletion
+        region: "{{ region }}"
+        vpc_id: "{{ vpc_id }}"
+        group_id: "{{ group_id }}"
+        state: "{{ state }}"
