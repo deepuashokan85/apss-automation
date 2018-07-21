@@ -1,0 +1,48 @@
+---
+- name:           new security group
+  hosts:          localhost
+  gather_facts:   False
+
+ec2_group:
+    name:           my_sg_group
+    description:    allowing port 80 and 22
+    vpc_id:         vpc-0d19d79707c12fd5d
+    region:         us-east-2
+rules:
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        cidr_ip: 172.31.0.0/16
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: 172.31.0.0/16
+register: sg
+
+  vars:
+                    region:           us-east-2
+                    instance_type:    t2.micro
+                    ami:              ami-03291866  # RHEL
+                    keypair:          manik # pem file name
+                    sg_group:         my_sg_group
+                    count_value:      1
+                    ec2_state:        present
+tasks:
+
+       - name:                Create an ec2 instance
+         ec2:
+            key_name:         "{{ keypair }}"
+            group:            "{{ sg_group  }}"  # security group name
+            instance_type:    "{{ instance_type}}"
+            image:            "{{ ami }}"
+            wait:             true
+            region:           "{{ region }}"
+            count:            "{{ count_value }}"  # default
+            count_tag:
+               Name:          Demo
+            instance_tags:
+               Name:          apss-test01
+            vpc_subnet_id:    subnet-0642ff47b15dad117
+            assign_public_ip: yes
+            state:            "{{ ec2_state }}"
+         register:            ec2
