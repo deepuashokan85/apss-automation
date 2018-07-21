@@ -4,13 +4,13 @@
   gather_facts:            False
 
   vars:
-      region:              us-east-2
+      region:              us-east-1b
       instance_type:       t2.micro
-      ami:                 ami-03291866  # RHEL
-      keypair:             ram-keypair # pem file name
-      sg_group:            new
-      count_value:         2
-      ec2_state:           absent
+      ami:                 ami-6871a115 # RHEL
+      keypair:             ansible # pem file name
+      sg_group:            SG for EBL
+      count_value:         1
+      ec2_state:           present
 
   tasks:
 
@@ -27,7 +27,10 @@
             Name:          Demo
          instance_tags:
             Name:          apss-test01
-         vpc_subnet_id:    subnet-0e4f7f18e7296ffa3
+         vpc_subnet_id:    subnet-52b6d518
          assign_public_ip: yes
          state:            "{{ ec2_state }}"
       register:            ec2
+
+
+
