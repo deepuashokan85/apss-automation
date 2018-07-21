@@ -1,0 +1,33 @@
+---
+- name:                    Create a Security group
+  hosts:                   localhost
+  gather_facts:            False
+
+vars:
+    region:              us-east-2
+    name:                SG1
+    vpc_id:              vpc-b99ad2d1
+
+tasks:
+  - name: Create security group
+    ec2_group:
+      name: "{{ name }}"
+      description: security group creation
+      region: "{{ region }}"
+      vpc_id: "{{ vpc_id }}"
+      rules:
+        - proto: tcp  # ssh
+          from_port: 22
+          to_port: 22
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp  # http
+          from_port: 80
+          to_port: 80
+          cidr_ip: 0.0.0.0/0
+        - proto: tcp  # https
+          from_port: 443
+          to_port: 443
+          cidr_ip: 0.0.0.0/0
+      rules_egress:
+        - proto: all
+          cidr_ip: 0.0.0.0/0
