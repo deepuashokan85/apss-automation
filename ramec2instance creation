@@ -1,0 +1,36 @@
+---
+  - name: Provision an EC2 Instance
+    hosts: local
+    connection: local
+    gather_facts: False
+    tags: provisioning
+    # Necessary Variables for creating/provisioning the EC2 Instance
+    vars:
+      instance_type: t2.micro
+      security_group: Ram_security_Group
+      image: ami-03291866
+      keypair: ram-keypair # pem file name
+      region: us-east-2
+      count_value: 1
+      ec2_state: present
+
+
+    tasks:
+
+      - name: Create an ec2 instance
+        local_action:
+          key_name:         "{{ keypair }}"
+         group:            "{{ security_group }}"  # security group name
+         instance_type:    "{{ t2.micro }}"
+         image:            "{{ image }}"
+         wait:             true
+         region:           "{{ region }}"
+         count:            "{{ count_value }}"  # default
+         count_tag:
+            Name:          Demo
+         instance_tags:
+            Name:          Ram instance_type
+         vpc_subnet_id:    subnet-0e4f7f18e7296ffa3
+         assign_public_ip: yes
+         state:            "{{ ec2_state }}"
+      register:            ec2
