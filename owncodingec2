@@ -5,10 +5,12 @@
   vars:
     keypair:             ram-keypair
     instance_type:       t2.micro
+    count_value:         1
     security_group:      my_sg_group
     image:               ami-03291866
     region:              us-east-2
     state:               present
+
   tasks:
     - name:               launching the instance
       ec2:
@@ -17,8 +19,9 @@
          image:           "{{ image }}"
          region:          "{{ region }}"
          instance_type:   "{{ instance_type }}"
+         count:           "{{ count_value }}"
          wait:             true
          ec2_state:       "{{ state }}"
          vpc_subnet_id:    subnet-0e4f7f18e7296ffa3
          assign_public_ip: yes
-       register:         ec2
+         register:         ec2
