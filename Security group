@@ -7,6 +7,7 @@
          name: Ram_security_Group
          description: Allow traffic for port 80 and 22
          region: us-east-2
+         vp
          rules:
            -  proto: tcp
               from_port: 80
@@ -16,6 +17,3 @@
               from_port: 22
               to_port: 22
               cidr_ip: 10.0.0.0/8
-
-
-  
