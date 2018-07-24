@@ -15,13 +15,17 @@
     - name:               launching the instance
       ec2:
          key_name:        "{{ keypair }}"
+         instance_type:   "{{ instance_type }}"
+         count:           "{{ count_value }}"
          sg_group:        "{{ security_group }}"
          image:           "{{ image }}"
          region:          "{{ region }}"
-         instance_type:   "{{ instance_type }}"
-         count:           "{{ count_value }}"
-         wait:             true
          ec2_state:       "{{ state }}"
+         wait:             true
+         count_tag:
+            Name:          Demoram
+         instance_tags:
+            Name:        test01
          vpc_subnet_id:    subnet-0e4f7f18e7296ffa3
          assign_public_ip: yes
          register:         ec2
