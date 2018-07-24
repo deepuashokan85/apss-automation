@@ -1,0 +1,14 @@
+---
+- name:                 Delete a new Demo EC2 instance
+  hosts:                localhost
+  gather_facts:         False
+
+  vars:
+      region:           us-east-2
+      ec2_state:        absent
+      ec2_instance_ids: i-037c0687672a6b5c4
+
+
+  tasks:
+    - name:             Terminate instances that were previously launched
+      ec2:
