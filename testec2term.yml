@@ -12,3 +12,5 @@
   tasks:
     - name:             Terminate instances that were previously launched
       ec2:
+         state:         "{{ ec2ec2_state}}"
+         ec2_instance_ids: "{{ ec2ec2_instance_ids }}"
