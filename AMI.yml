@@ -8,7 +8,8 @@
   tasks:
     - ec2_ami:
         instance_id: "{{ instance_id }}"
-        region: "{{ region }}"
         instance_name: "{{ instance_name }}"
-        wait: yes
+        region: "{{ region }}"
         state: present
+        wait: yes
+        
