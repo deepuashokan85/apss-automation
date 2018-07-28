@@ -1,0 +1,14 @@
+- name: Creating AMI
+  hosts: localhost
+  vars:
+    instance_id: i-085df31cfa8465e46
+    instance_name: ramami
+    region: us-east-2
+
+  tasks:
+    - ec2_ami:
+        instance_id: "{{ instance_id }}"
+        region: "{{ region }}"
+        instance_name: "{{ instance_name }}"
+        wait: yes
+        state: present

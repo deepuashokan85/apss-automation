@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: install httpd
+      yum:
+        name=httpd
+        update_cache=yes
+        state=latest
+    - name: Deploy the static website
+      copy: src=/home/ram/learning-git/index.html dest=/var/www/html/index.html
+    - name: Ensure httpd is started
+      service:
+        name: httpd
+        state: started
