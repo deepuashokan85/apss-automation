@@ -1,0 +1,8 @@
+# Basic AMI Creation
+- ec2_ami:
+    instance_id: i-01cbd702465f543b3
+    wait: yes
+    name: newtest
+    tags:
+      Name: newtest
+      Service: TestService
