@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
-  become: yes
+  remote_user: ec2-user
+  sudo: yes
   tasks:
     - name: install httpd
       yum:
