@@ -6,7 +6,7 @@
   vars:
     region:            us-east-2
     state:             present
-    name_ram:          rambucket
+    name_ram:          rambucket12hr
   tasks:
 
     - name:            final task for S3 Bucket
