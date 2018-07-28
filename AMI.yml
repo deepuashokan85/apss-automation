@@ -1,7 +1,6 @@
 - name: Creating AMI
-  hosts: localhost
   vars:
-    instance_id: i-085df31cfa8465e46
+    instance_id: i-0d4cc9909c5480e11
     instance_name: ramami
     region: us-east-2
 
