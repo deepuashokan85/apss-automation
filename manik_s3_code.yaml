@@ -1,16 +1,15 @@
 ---
-  - name:               Creation of S3 Bucket
-    hosts:              localhost
-    gather_facts:       False
+- name:               Creation of S3 Bucket
+  hosts:              localhost
+  gather_facts:       False
 
-    Vars:
+  vars:
       region:           us-east-2
       state:            present
 
-    tasks:
-
-      - name: final task for S3 Bucket
-        s3_bucket:
-          name:         firsthrsharedbucket1
-          region:       "{{ region }}"
-          state:        "{{ state }}"  
+  tasks:
+  - name: final task for S3 Bucket
+    s3_bucket:
+             name:         firsthrsharedbucket1
+             region:       "{{ region }}"
+             state:        "{{ state }}"  
