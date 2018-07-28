@@ -1,0 +1,8 @@
+- name: Creating the AMI from of the instance
+  ec2_ami:
+    instance_id: "{{ item.id }}"
+    wait: yes
+    name: "{{ ami_name }}"
+  delegate_to: 127.0.0.1
+  with_items: "{{ ec2.instances }}"
+  register: image

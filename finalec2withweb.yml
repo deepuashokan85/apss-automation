@@ -1,0 +1,36 @@
+- name: Create a ec2 instance
+  hosts: localhost
+  gather_facts: False
+  vars:
+    key_name: ram-keypair
+    instance_type: t2.micro
+    security_group: default
+    image: ami-03291866
+    region: us-east-2
+  tasks:
+    - name: Launch instance
+      ec2:
+         key_name: "{{ key_name }}"
+         group: "{{ security_group }}"
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         region: "{{ region }}"
+         vpc_subnet_id: subnet-0e4f7f18e7296ffa3
+         assign_public_ip: yes
+      register: ec2
+
+    - name: webserver Creation
+      become: yes
+      tasks:
+        - name: install httpd
+          yum:
+            name=httpd
+            update_cache=yes
+            state=latest
+    - name: Deploy the static website
+      copy: src=/home/ram/learning-git/index.html dest=/var/www/html/index.html
+    - name: Ensure httpd is started
+      service:
+      name: httpd
+      state: started
