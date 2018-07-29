@@ -1,0 +1,23 @@
+---
+- hosts: webservers
+  remote_user: ec2-user
+  sudo: yes
+  tasks:
+    - name: install httpd
+      yum:
+        name=httpd
+        update_cache=yes
+        state=latest
+
+    - name: install wget
+      yum:
+        name=wget
+        update_cache=yes
+        state=latest
+
+    - name: Deploy the static website
+      command: wget -O /var/www/html/index.html https://s3.us-east-2.amazonaws.com/apss-webbucket1/index.html
+    - name: Ensure httpd is started
+      service:
+        name: httpd
+        state: started
