@@ -20,3 +20,4 @@
           object: index.html
           src:  files/index.html
           mode: put
+          permission: public-read
