@@ -2,7 +2,7 @@
   hosts: localhost
   gather_facts: False
   vars:
-    key_name: ram-keypair
+    key_name: rajesh-key
     instance_type: t2.micro
     security_group: default
     image: ami-03291866
@@ -17,6 +17,6 @@
          image: "{{ image }}"
          wait: true
          region: "{{ region }}"
-         vpc_subnet_id: subnet-0e4f7f18e7296ffa3
+         vpc_subnet_id: subnet-27c8b04f
          assign_public_ip: yes
       register: ec2
