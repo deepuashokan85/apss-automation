@@ -4,7 +4,7 @@
   vars:
     key_name: rajesh-key
     instance_type: t2.micro
-    security_group: default
+    security_group: web-sg
     image: ami-03291866
     region: us-east-2
 
