@@ -6,7 +6,7 @@
   vars:
       region:           us-east-2
       ec2_state:        absent
-      ec2_instance_ids: i-05a7d5ab39cfd98b2
+      ec2_instance_ids: i-09abcdfe8d0471930 
 
 
   tasks:
