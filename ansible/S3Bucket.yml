@@ -1,0 +1,15 @@
+---
+  - name:             Creation of S3 Bucket
+    hosts:            localhost
+    gather_facts:     False
+
+    vars:
+      region:         us-east-2
+
+    tasks:
+      - name:         final task for S3 Bucket
+        aws_s3:
+          bucket:     webbucket1
+          mode:       create
+          permission: public-read
+          region:     "{{ region }}"

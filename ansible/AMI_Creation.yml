@@ -1,0 +1,14 @@
+- name: Creating AMI
+
+  vars:
+    instance_id: i-01cbd702465f543b3
+    instance_name: myami
+    region: us-east-2
+
+  tasks:
+    - ec2_ami:
+        instance_id: "{{ instance_id }}"
+        instance_name: "{{ instance_name }}"
+        region: "{{ region }}"
+        state: present
+        wait: yes
