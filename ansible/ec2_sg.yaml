@@ -2,16 +2,6 @@
   hosts:                   localhost
   gather_facts:            False
 
-  vars:
-      region:              us-east-2
-      instance_type:       t2.micro
-      ami:                 ami-03291866  # RHEL
-      keypair:             ram-keypair # pem file name
-      sg_group:            Custome_sg_group1
-      count_value:         1
-      ec2_state:           absent
-      vpc_id:              vpc-b99ad2d1
-
 tasks:
   - name: Create security group
     ec2_group:
@@ -50,7 +40,7 @@ tasks:
             Name:          Demo
          instance_tags:
             Name:          apss-test01
-         vpc_subnet_id:    subnet-0e4f7f18e7296ffa3
+         vpc_subnet_id:    "{{ vpc_subnet_id }}"
          assign_public_ip: yes
          state:            "{{ ec2_state }}"
       register:            ec2
