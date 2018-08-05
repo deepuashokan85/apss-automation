@@ -4,18 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                ansible-playbook -e "bucket=apss1-web-test1 region=us-east-2 vpc_id=vpc-b99ad2d1 sg_name=pradeepsg" aws-ansible/playbooks/ec2/ec2.yml
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+
     }
 }
