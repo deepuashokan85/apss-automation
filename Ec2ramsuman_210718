@@ -1,0 +1,48 @@
+---
+- name:                    Create a new Demo EC2 instance
+  hosts:                   localhost
+  gather_facts:            False
+
+  vars:
+      region:              us-east-2
+      instance_type:       t2.micro
+      ami:                 ami-03291866  # RHEL
+      keypair:             ram-keypair # pem file name
+      sg_group:            new
+      count_value:         1
+      ec2_state:           present
+
+  tasks:
+  - name:  security group rule descriptions for port 80 
+  ec2_group:
+    name: "{{ new }}"
+    description: sg with rule descriptions
+    vpc_id: default
+    profile: "{{ aws_profile }}"
+    region: us-east-2
+    rules:
+      - proto: tcp
+        ports:
+        - 80
+        cidr_ip: 0.0.0.0/0
+        rule_desc: allow all on port 80
+
+  - name:                Create an ec2 instance
+      ec2:
+         key_name:         "{{ keypair }}"
+         group:            "{{ sg_group }}"  # security group name
+         instance_type:    "{{ instance_type}}"
+         image:            "{{ ami }}"
+         wait:             true
+         region:           "{{ region }}"
+         count:            "{{ count_value }}"  # default
+         count_tag:
+            Name:          Demo
+         instance_tags:
+            Name:          ramsuman-210718
+         vpc_subnet_id:    subnet-0e4f7f18e7296ffa3
+         assign_public_ip: yes
+         state:            "{{ ec2_state }}"
+      register:            ec2
+      
+
