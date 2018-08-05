@@ -1,0 +1,17 @@
+---
+- name:                Creation of simple storage s3
+  hosts:               localhost
+  gather_facts:        False
+
+  vars:
+    region:            us-east-1
+    state:             present
+    name_bucket:       tnmbucket
+  tasks:
+
+    - name:            final task for S3 Bucket
+      s3_bucket:
+        name:          "{{ name_bucket }}"
+        region:        "{{ region }}"
+        state:         "{{ state }}"
+
