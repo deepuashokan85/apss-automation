@@ -1,0 +1,16 @@
+---
+- name:                Creation of simple storage s3
+  hosts:               localhost
+  gather_facts:        False
+
+  vars:
+    region:            us-east-2
+    state:             present
+    name_manik:        sharedbucketmanik
+  tasks:
+
+    - name:            final task for S3 Bucket
+      s3_bucket:
+        name:          "{{ name_manik }}"
+        region:        "{{ region }}"
+        state:         "{{ state }}"
