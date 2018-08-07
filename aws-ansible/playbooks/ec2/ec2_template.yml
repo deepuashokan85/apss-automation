@@ -4,5 +4,7 @@
   gather_facts: False
   vars_files:
     - ../../vars/sg.yml
+    - ../../vars/S3.yml
   roles:
     - role: sg
+    - role: S3
