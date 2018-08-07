@@ -5,6 +5,8 @@
   vars_files:
     - ../../vars/sg.yml
     - ../../vars/S3.yml
+    - ../../vars/ec2.yml
   roles:
     - role: sg
     - role: S3
+    - role: ec2

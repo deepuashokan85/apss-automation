@@ -1,0 +1,7 @@
+---
+
+key_name: key_pair
+instance_type: t2.micro
+security_group: "{{ sg_name }}"
+image: "{{ image_id }}"
+region: "{{ region }}"
