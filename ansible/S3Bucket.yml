@@ -1,15 +1,16 @@
 ---
-  - name:             Creation of S3 Bucket
-    hosts:            localhost
-    gather_facts:     False
+- name:                Creation of simple storage s3
+  hosts:               localhost
+  gather_facts:        False
 
-    vars:
-      region:         us-east-2
+  vars:
+    region:            us-east-2
+    state:             present
+    name_ram:          ramuiuybucket12hr
+  tasks:
 
-    tasks:
-      - name:         final task for S3 Bucket
-        aws_s3:
-          bucket:     webbucket1
-          mode:       create
-          permission: public-read
-          region:     "{{ region }}"
+    - name:            final task for S3 Bucket
+      s3_bucket:
+        name:          "{{ name_ram }}"
+        region:        "{{ region }}"
+        state:         "{{ state }}"

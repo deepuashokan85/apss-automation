@@ -1,0 +1,8 @@
+---
+- name: Create a ec2 instance
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../../vars/sg.yml
+  roles:
+    - role: sg
