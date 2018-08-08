@@ -1,0 +1,7 @@
+---
+- local_action:
+    module: ec2_vol
+    instance: i-0174dfefd15c1c025
+    volume_size: 1
+    device_name: gp2
+    region: "{{ region }}"
