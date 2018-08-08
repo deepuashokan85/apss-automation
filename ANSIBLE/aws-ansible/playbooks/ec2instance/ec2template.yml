@@ -6,7 +6,7 @@
     - ../../vars/sg_var.yml
     - ../../vars/s3bucket_var.yml
     - ../../vars/ec2_var.yml
-    - ../../vars/EBSvolume.yml
+    - ../../vars/ebsvolume_var.yml
     - ../../vars/elbcreation_var.yml
   roles:
     - role: sgcreation
