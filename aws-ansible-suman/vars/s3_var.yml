@@ -1,0 +1,4 @@
+---
+
+bucketname: "{{ bucket }}"
+region: "{{ region }}"
