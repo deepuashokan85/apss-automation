@@ -1,0 +1,30 @@
+- name: Create a ec2 instance
+  hosts: localhost
+  gather_facts: False
+  vars:
+    key_name: ram-keypair
+    instance_type: t2.micro
+    security_group: ELB
+    image: ami-03291866
+    region: us-east-2
+
+  tasks:
+    - name: Launch instance
+      ec2:
+         key_name: "{{ key_name }}"
+         group: "{{ security_group }}"
+         instance_type: "{{ instance_type }}"
+         image: "{{ image }}"
+         wait: true
+         region: "{{ region }}"
+         vpc_subnet_id: subnet-0e4f7f18e7296ffa3
+         assign_public_ip: yes
+      register: ec2
+
+    - name: wait for the servers to appear on the network
+      wait_for: host={{ item.public_dns_name }} port=22 delay=10 timeout=180 state=started
+      with_items: ec2.tagged_instances
+
+    - name: add server ip addresses to hosts group
+      add_host: hostname={{ item.public_ip }} groupname=webservers
+      with_items: ec2.tagged_instances
