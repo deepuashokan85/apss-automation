@@ -1,4 +1,5 @@
 - name: ELB Creation
+  hosts: localhost
   local_action:
     vars:
       module: ec2_elb_lb
