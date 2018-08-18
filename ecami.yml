@@ -20,3 +20,20 @@
          vpc_subnet_id: subnet-0e4f7f18e7296ffa3
          assign_public_ip: yes
       register: ec2
+
+    - local_action:
+        module: ec2_elb_lb
+        name: "test-vpc"
+        scheme: internal
+        state: present
+        instance_ids:
+          - i-0c4174d8f42a98b5e
+        purge_instance_ids: true
+        subnets:
+          - subnet-0e4f7f18e7296ffa3
+        listeners:
+          - protocol: http # options are http, https, ssl, tcp
+            load_balancer_port: 80
+            instance_port: 80
+
+    
