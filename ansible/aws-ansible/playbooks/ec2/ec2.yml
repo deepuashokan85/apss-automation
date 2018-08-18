@@ -5,8 +5,8 @@
   vars_files:
     - ../../vars/web_sg.yml
     - ../../vars/ec2_var.yml
-    - ../../vars/s3_var.yml
+#    - ../../vars/s3_var.yml
   roles:
     - role: web-sg
     - role: ec2-creation
-    - role: s3bucket
+#    - role: s3bucket

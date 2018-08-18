@@ -1,0 +1,7 @@
+region: us-east-2
+instance_type: t2.micro
+ami: ami-885a60ed  # Ubuntu 14.04 LTS
+app_code_user: "ubuntu" # remote user
+env: demo
+vpc_id: vpc-51b9dc39
+pem_key: karthik2 # key.pem

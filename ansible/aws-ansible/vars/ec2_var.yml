@@ -1,7 +1,7 @@
 ---
 
-key_name: key_pair
+key_name: manik-3 
 instance_type: t2.micro
 security_group: "{{ sg_name }}"
-image: ami-03291866
+image: ami-6871a115
 region: "{{ region }}"
