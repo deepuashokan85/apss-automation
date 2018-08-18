@@ -1,10 +1,10 @@
 # Basic AMI Creation
 ---
 - name: creating AMI
- hosts: localhost
- gather_facts: False
+  hosts: localhost
+  gather_facts: False
 
- tasks:
+  tasks:
    - name:
      ec2_ami:
        instance_id: i-0466397a4565a40ac
