@@ -1,7 +1,6 @@
 - name: ELB Creation
   hosts: localhost
   vars:
-    module: ec2_elb_lb
     region: us-east-2
     name: "test-vpc"
     scheme: internal
@@ -12,12 +11,12 @@
     subnets:
       - subnet-0e4f7f18e7296ffa3
   tasks:
-    module: "{{ module }}"
-    region: "{{ region }}"
-    name: "{{ name }}"
-    state: "{{ state }}"
-    instance_ids: "{{ instance_ids }}"
-    subnet: "{{ subnets }}"
+    ec2_elb_lb:
+      region: "{{ region }}"
+      name: "{{ name }}"
+      state: "{{ state }}"
+      instance_ids: "{{ instance_ids }}"
+      subnet: "{{ subnets }}"
 
   listeners:
     - protocol: http # options are http, https, ssl, tcp
