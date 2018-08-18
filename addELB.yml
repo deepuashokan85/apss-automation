@@ -1,26 +1,25 @@
 - name: ELB Creation
   hosts: localhost
-  local_action:
-    vars:
-      module: ec2_elb_lb
-      region: us-east-2
-      name: "test-vpc"
-      scheme: internal
-      state: present
-      instance_ids:
-        - i-0c4174d8f42a98b5e
-      purge_instance_ids: true
-      subnets:
-        - subnet-0e4f7f18e7296ffa3
-    tasks:
-      module: "{{ module }}"
-      region: "{{ region }}"
-      name: "{{ name }}"
-      state: "{{ state }}"
-      instance_ids: "{{ instance_ids }}"
-      subnet: "{{ subnets }}"
+  vars:
+    module: ec2_elb_lb
+    region: us-east-2
+    name: "test-vpc"
+    scheme: internal
+    state: present
+    instance_ids:
+      - i-0c4174d8f42a98b5e
+    purge_instance_ids: true
+    subnets:
+      - subnet-0e4f7f18e7296ffa3
+  tasks:
+    module: "{{ module }}"
+    region: "{{ region }}"
+    name: "{{ name }}"
+    state: "{{ state }}"
+    instance_ids: "{{ instance_ids }}"
+    subnet: "{{ subnets }}"
 
-    listeners:
-      - protocol: http # options are http, https, ssl, tcp
-        load_balancer_port: 80
-        instance_port: 80
+  listeners:
+    - protocol: http # options are http, https, ssl, tcp
+      load_balancer_port: 80
+      instance_port: 80
