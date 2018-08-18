@@ -1,5 +1,6 @@
 - name: ELB Creation
   hosts: localhost
+  gather_facts: False
   vars:
     region: us-east-2
     name: "test-ELB"
