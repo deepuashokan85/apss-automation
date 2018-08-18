@@ -1,14 +1,15 @@
-- name: Creating AMI
-  hosts: localhost
-  vars:
-    instance_id: i-085df31cfa8465e46
-    instance_name: ramami
-    region: us-east-2
+# Basic AMI Creation
+---
+- name: creating AMI
+ hosts: localhost
+ gather_facts: False
 
-  tasks:
-    - ec2_ami:
-        instance_id: "{{ instance_id }}"
-        region: "{{ region }}"
-        instance_name: "{{ instance_name }}"
-        wait: yes
-        state: present
+ tasks:
+   - name:
+     ec2_ami:
+       instance_id: i-0466397a4565a40ac
+       wait: yes
+       name: newtest
+       tags:
+         Name: test-ELB
+         Service: TestService
