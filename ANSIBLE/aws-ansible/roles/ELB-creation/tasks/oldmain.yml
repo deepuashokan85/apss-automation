@@ -8,8 +8,6 @@
     region: "{{ region }}"
     subnets: "{{ subnets }}"
     purge_subnets: yes
-    instance_ids: "{{ instance_ids }}"
-    purge_instance_ids: true
     listeners:
       - protocol: http
         load_balancer_port: 80
