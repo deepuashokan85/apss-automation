@@ -4,7 +4,6 @@
   gather_facts: False
   vars:
     key_name: suman
-    instance_type: t2.micro
     security_group: suman123
     image: ami-03291866
     region: us-east-2
