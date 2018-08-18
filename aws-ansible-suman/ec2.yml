@@ -1,3 +1,4 @@
+---
 - name: Create a ec2 instance
   hosts: localhost
   gather_facts: False
@@ -19,4 +20,4 @@
          region: "{{ region }}"
          vpc_subnet_id: subnet-535a5d1e
          assign_public_ip: yes
-register: ec2
+      register: ec2
