@@ -1,0 +1,33 @@
+---
+- name:                    Create a new Demo EC2 instance
+  hosts:                   localhost
+  gather_facts:            False
+
+  vars:
+      region:              us-east-2
+      instance_type:       t2.micro
+      ami:                 ami-03291866  # RHEL
+      keypair:             gauti # pem file name
+      sg_group:            default
+      count_value:         2
+      ec2_state:           present
+
+  tasks:
+
+    - name:                Create an ec2 instance
+      ec2:
+         key_name:         "{{ keypair }}"
+         group:            "{{ sg_group }}"  # security group name
+         instance_type:    "{{ instance_type}}"
+         image:            "{{ ami }}"
+         wait:             true
+         region:           "{{ region }}"
+         count:            "{{ count_value }}"  # default
+         count_tag:
+            Name:          Demo
+         instance_tags:
+            Name:          apss-test01
+         vpc_subnet_id:    subnet-0a106062
+         assign_public_ip: yes
+         state:            "{{ ec2_state }}"
+      register:            ec2
