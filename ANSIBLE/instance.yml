@@ -1,0 +1,24 @@
+---
+- name: A simple Load Balanced AWS blog using the Amazon standard linux AMI
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: spin up the webserver instances
+      ec2:
+        key_name: "{{ key_name }}"
+        group: "{{ security_group }}"
+        instance_type: "{{ instance_type }}"
+        image: "{{ image }}"
+        region: "{{ region }}"
+        wait: yes
+        instance_tags:
+           group: webservers
+        exact_count: 2
+        count_tag:
+           group: webservers
+        vpc_subnet_id: subnet-aea47d80
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_key }}"
+      register: awsblog-webservers
+
