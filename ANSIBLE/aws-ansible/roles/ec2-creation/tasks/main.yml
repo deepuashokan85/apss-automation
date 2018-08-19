@@ -1,4 +1,9 @@
 ---
+- name:                    Create a new Demo EC2 instance
+  hosts:                   webservers
+  gather_facts:            False
+
+  tasks:
     - name: Launch instance
       ec2:
          key_name: "{{ key_name }}"
