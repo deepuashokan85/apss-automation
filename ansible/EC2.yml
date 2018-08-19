@@ -2,9 +2,9 @@
   hosts: localhost
   gather_facts: False
   vars:
-    key_name: key_pair
+    key_name: ram-keypair
     instance_type: t2.micro
-    security_group: web-sg
+    security_group: ELB
     image: ami-03291866
     region: us-east-2
 
@@ -13,10 +13,12 @@
       ec2:
          key_name: "{{ key_name }}"
          group: "{{ security_group }}"
+         AWS_ACCESS_KEY: "{{ test1 }}"
+         AWS_SECRET_ACCESS_KEY: "{{ test2 }}"
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"
          wait: true
          region: "{{ region }}"
-         vpc_subnet_id: subnet-27c8b04f
+         vpc_subnet_id: subnet-0e4f7f18e7296ffa3
          assign_public_ip: yes
       register: ec2
