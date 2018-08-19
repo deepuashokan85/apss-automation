@@ -1,7 +1,7 @@
 ---
-- name:                    Create a new Demo EC2 instance
-  hosts:                   localhost
-  gather_facts:            False
+- name: Create a ec2 instance
+  hosts: localhost
+  gather_facts: False
 
   tasks:
     - name: Launch instance
@@ -12,8 +12,8 @@
          image: "{{ image }}"
          wait: true
          region: "{{ region }}"
-         vpc_subnet_id: subnet-52b6d518
+         vpc_subnet_id: subnet-535a5d1e
          assign_public_ip: yes
-         aws_access_key: "{{ AWS_ACCESS_KEY }}"
-         aws_secret_key: "{{ AWS_SECRET_ACCESS_KEY }}"
+         aws_access_key: "{{ aws_access_key }}"
+         aws_secret_key: "{{ aws_secret_key }}"
     register: ec2
