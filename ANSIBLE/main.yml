@@ -11,6 +11,9 @@
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"
          wait: true
+         count: 2
+         instance_tags:
+            db: postgres        
          region: "{{ region }}"
          vpc_subnet_id: subnet-aea47d80
          assign_public_ip: yes
