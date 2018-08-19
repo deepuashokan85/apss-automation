@@ -1,4 +1,9 @@
 ---
+- name:                    Create a new Demo EC2 instance
+  hosts:                   localhost
+  gather_facts:            False
+  
+  tasks:
     - name: Launch instance
       ec2:
          key_name: "{{ key_name }}"
@@ -11,4 +16,4 @@
          assign_public_ip: yes
          aws_access_key: "{{ aws_access_key }}"
          aws_secret_key: "{{ aws_secret_key }}"
-      register: ec2
+    register: ec2
