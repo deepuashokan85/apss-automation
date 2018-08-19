@@ -13,8 +13,8 @@
       ec2:
          key_name: "{{ key_name }}"
          group: "{{ security_group }}"
-         AWS_ACCESS_KEY: "{{ test1 }}"
-         AWS_SECRET_ACCESS_KEY: "{{ test2 }}"
+         aws_access_key: "{{ test1 }}"
+         aws_secret_key: "{{ test2 }}"
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"
          wait: true
