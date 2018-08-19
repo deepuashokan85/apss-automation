@@ -1,0 +1,32 @@
+---
+- name:                    Create a new Demo EC2 instance
+  hosts:                   localhost
+  gather_facts:            False
+
+  vars:
+      region:              us-east-2
+      instance_type:       t2.micro
+      ami:                 ami-0bfbafc6cac1d1e3c  # RHEL
+      keypair:             suman # pem file name
+      sg_group:            suman123
+      count_value:         1
+      ec2_state:           present
+
+  tasks:
+    - name:                Create an ec2 instance
+      ec2:
+         key_name:         "{{ keypair }}"
+         group:            "{{ sg_group }}"  # security group name
+         instance_type:    "{{ instance_type}}"
+         image:            "{{ ami }}"
+         wait:             true
+         region:           "{{ region }}"
+         count:            "{{ count_value }}"  # default
+         count_tag:
+            Name:          Demo
+         instance_tags:
+            Name:          webserver-test01
+         vpc_subnet_id:    subnet-535a5d1e
+         assign_public_ip: yes
+         state:            "{{ ec2_state }}"
+      register:            ec2
