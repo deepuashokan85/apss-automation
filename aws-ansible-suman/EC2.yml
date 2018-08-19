@@ -19,4 +19,6 @@
          region: "{{ region }}"
          vpc_subnet_id: subnet-535a5d1e
          assign_public_ip: yes
+         aws_access_key: "{{ aws_access_key }}"
+         aws_secret_key: "{{ aws_secret_key }}"
       register: ec2
