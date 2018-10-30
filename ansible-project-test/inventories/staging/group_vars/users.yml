@@ -1,0 +1,10 @@
+---
+  users:
+    - username: stguser1
+      use_sudo: yes
+    - username: stguser2
+      use_sudo: no
+    - username: stguser3
+      use_sudo: no
+    - username: svcgcpstg
+      use_sudo: yes

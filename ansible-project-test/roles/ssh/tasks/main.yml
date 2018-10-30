@@ -1,0 +1,48 @@
+---
+
+  - name:        Ariba Banner File
+    copy:
+      src:       files/banner_issue_net.tmpl
+      dest:      /etc/issue.net
+      owner:     root
+      group:     root
+      mode:      0644
+    when:        ansible_distribution == "RedHat"
+
+  - name:        Openssh-server packages present
+    yum:
+      name:      "{{ item }}"
+      state:     present
+    when:        ansible_distribution == "RedHat" and ansible_distribution_version == '6.7'
+    with_items:
+          - openssh-server.x86_64
+
+  - name:        Sshd Configuration file
+    template:
+      src:       templates/sshd_config.j2
+      dest:      /etc/ssh/sshd_config
+      owner:     root
+      group:     root
+      mode:      0600
+    when:        ansible_distribution == "RedHat"
+    notify:
+      - restart sshd
+
+  - name:        Openssh-server packages present
+    yum:
+      name:      "{{ item }}"
+      state:     present
+    when:        ansible_distribution == "RedHat"
+    with_items:
+          - openssh-clients.x86_64
+
+  - name:        Ssh Configuration file
+    template:
+      src:       ssh_config.j2
+      dest:      /etc/ssh/ssh_config
+      owner:     root
+      group:     root
+      mode:      0644
+    when:        ansible_distribution == "RedHat"
+    notify:
+      - restart sshd

@@ -1,0 +1,14 @@
+---
+
+# Disable SELinux on RHEL Servers
+  - name:    Disable Selinux
+    selinux:
+    state:   disabled
+
+# Disable Firewalld on RHEL Servers
+- name:      Enable firewalld
+  service:
+    name:    firewalld
+    state:   stopped
+    enabled: false
+  when:      ansible_distribution == "RedHat"

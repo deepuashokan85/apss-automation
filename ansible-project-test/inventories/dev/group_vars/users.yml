@@ -1,0 +1,10 @@
+---
+  users:
+    - username: devuser1
+      use_sudo: yes
+    - username: devuser2
+      use_sudo: yes
+    - username: devuser3
+      use_sudo: yes
+    - username: svcgcpdev
+      use_sudo: yes

@@ -1,0 +1,90 @@
+---
+
+  - name:        Ariba Banner File
+    copy:
+      src:       files/banner_issue_net.tmpl
+      dest:      /etc/issue.net
+      owner:     root
+      group:     root
+      mode:      0644
+    when:        ansible_distribution == "RedHat"
+
+  - name:        Openssh-server packages present
+    yum:
+      name:      "{{ item }}"
+      state:     present
+    when:        ansible_distribution == "RedHat" and ansible_distribution_version == '6.7'
+    with_items:
+          - openssh-server.x86_64
+
+  - name:        Sshd Configuration file
+    template:
+      src:       templates/sshd_config.j2
+      dest:      /etc/ssh/sshd_config
+      backup:    yes
+      owner:     root
+      group:     root
+      mode:      0600
+    when:        ansible_distribution == "RedHat"
+
+  - name:        insert/update "Match User" configuration block in /etc/ssh/sshd_config
+    blockinfile:
+      path:      /etc/ssh/sshd_config
+      block:     |
+        Banner /etc/issue.net
+        Protocol 2
+        SyslogFacility DAEMON
+        LogLevel INFO
+        UsePAM yes
+        PermitRootLogin no
+        PermitUserEnvironment no
+        PermitEmptyPasswords no
+        RSAAuthentication yes
+        PubkeyAuthentication yes
+        X11Forwarding no
+        MaxAuthTries 4
+        PrintMotd no
+        KeepAlive yes
+        UsePrivilegeSeparation yes
+        MaxStartups 40
+        IgnoreRhosts yes
+        HostbasedAuthentication no
+        Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+        ClientAliveInterval 3600
+        ClientAliveCountMax 0
+    when:        ansible_distribution == "RedHat"
+    notify:
+      - restart sshd
+
+  - name:        Openssh-server packages present
+    yum:
+      name:      "{{ item }}"
+      state:     present
+    when:        ansible_distribution == "RedHat" and ansible_distribution_version == '6.7'
+    with_items:
+          - openssh-clients.x86_64
+
+#  - name:        Ssh Configuration file
+#    template:
+#      src:       templates/ssh_config.j2
+#      dest:      /etc/ssh/ssh_config
+#      backup:    yes
+#      owner:     root
+#      group:     root
+#      mode:      0600
+#      when:      ansible_distribution == "RedHat"
+#
+#  - name:        insert/update "Match User" configuration block in /etc/ssh/sshd_config
+#    blockinfile:
+#      path:      /etc/ssh/ssh_config
+#      block:     |
+#        Host *
+#        GSSAPIAuthentication yes
+#        ForwardX11Trusted yes
+#        SendEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+#        SendEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+#        SendEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+#        SendEnv XMODIFIERS
+#    when:        ansible_distribution == "RedHat"
+#    notify:
+#      - restart sshd

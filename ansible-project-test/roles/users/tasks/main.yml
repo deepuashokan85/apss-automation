@@ -1,0 +1,19 @@
+---
+
+  - name:       Add list of users
+    user:
+      name:     "{{ item.username }}"
+      password: $6$Cld91pcR$/FwVs5ge678JX/iYwitT5KY0nGB4.qVLX7VnXEgEX4fx0s3STQ0ttbZdSe.1332M0GMLAbZ89PLY.E04CEOLW.
+      group:    "ariba"
+      state:    present
+    with_items:
+          - "{{ users }}"
+
+  - name:       Sudoers | update sudoers file and validate
+    lineinfile: "dest=/etc/sudoers
+      insertafter=EOF
+      line='{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
+      regexp='^{{ item.username }} .*'
+      state=present"
+    when:       item.use_sudo == True
+    with_items: "{{ users }}"

@@ -1,0 +1,30 @@
+---
+
+#  - import_playbook: ../ssh/main.yml
+#  - import_playbook: ../groups/main.yml
+#  - import_playbook: ../users/main.yml
+#  - import_playbook: ../limits/main.yml
+#  - import_playbook: ../packages/main.yml
+#  - import_playbook: ../cron/main.yml
+#  - import_playbook: ../firewall/main.yml
+
+  - include_role:
+       name: ssh
+
+  - include_role:
+       name: groups
+
+  - include_role:
+       name: users
+
+  - include_role:
+       name: limits
+
+  - include_role:
+       name: packages
+
+  - include_role:
+       name: cron
+
+  - include_role:
+       name: firewall

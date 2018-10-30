@@ -1,0 +1,37 @@
+---
+
+  - name:       Install packages
+    yum:
+      name:     rsync
+      state:    absent
+    when:       ansible_distribution == "RedHat" and ansible_distribution_version == '6.7'
+
+  - name:       Packages Present
+    yum:
+      name:     "{{ item }}"
+      state:    present
+    when:       ansible_distribution == "RedHat" and ansible_distribution_version == '6.7'
+    with_items:
+          - yum-utils.noarch
+          - yum-metadata-parser.x86_64
+          - yum-plugin-security.noarch
+          - graft.noarch
+          - rsync-opt.x86_64
+          - ntp.x86_64
+          - ntpdate.x86_64
+          - sudo.x86_64
+          - net-snmp.x86_64
+          - net-snmp-libs.x86_64
+          - net-snmp-devel.x86_64
+          - openssh.x86_64
+          - sendmail.x86_64
+          - rsyslog.x86_64
+          - gzip.x86_64
+          - zip.x86_64
+          - unzip.x86_64
+          - screen.x86_64
+          - lsscsi.x86_64
+          - telnet.x86_64
+          - nfs-utils.x86_64
+          - net-tools.x86_64
+          - nc.x86_64

@@ -1,0 +1,20 @@
+---
+
+# Add or modify nofile soft limit
+  - pam_limits:
+      domain:     *
+      limit_type: soft
+      limit_item: nofile
+      value:      32768
+
+  - pam_limits:
+      domain:     *
+      limit_type: hard
+      limit_item: nofile
+      value:      32768
+
+# Delete 90-nproc.conf file
+  - name:         Delete default ulimit file
+    file:
+      path:       /etc/security/limits.d/90-nproc.conf
+      state:      absent

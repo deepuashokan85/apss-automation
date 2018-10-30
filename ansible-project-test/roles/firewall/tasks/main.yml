@@ -1,0 +1,7 @@
+---
+
+# Disable SELinux on RHEL Servers
+  - name:      Disable Selinux
+    selinux:
+      state:   disabled
+    when:      ansible_distribution == "RedHat"
