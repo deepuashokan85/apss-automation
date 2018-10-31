@@ -4,31 +4,6 @@
     cron:
       name:   Run logrotate every hour daily-logrotate
       minute: "0"
-      job:    "/usr/local/ariba/bin/crontab-wrapper /etc/cron.daily/logrotate"
-      state:  present
-      user:   root
-
-  - name:     Crontab entry to restart snmpd every night at 23:05
-    cron:
-      name:   restart snmpd every night at 23:05
-      minute: "5"
-      hour:   "23"
-      job:    "/sbin/service snmpd restart > /dev/null 2>&1"
-      state:  present
-      user:   root
-
-  - name:     Crontab entry to update-cacert-symlinks
-    cron:
-      name:   update-cacert-symlinks
-      minute: "0"
-      job:    "/usr/local/ariba/bin/ca-dir-rehash > /dev/null 2>&1"
-      state:  present
-      user:   root
-
-  - name:     Crontab entry for splunk-status-check
-    cron:
-      name:   splunk-status-check
-      minute: "0,15,30,45"
-      job:    "/usr/local/ariba/bin/crontab-wrapper /usr/local/ariba/bin/splunk-status-check"
+      job:    "/usr/local/bin/crontab /etc/cron.daily/logrotate"
       state:  present
       user:   root
