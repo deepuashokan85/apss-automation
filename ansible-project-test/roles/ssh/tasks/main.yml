@@ -1,6 +1,6 @@
 ---
 
-  - name:        Ariba Banner File
+  - name:        Banner File
     copy:
       src:       files/banner_issue_net.tmpl
       dest:      /etc/issue.net
