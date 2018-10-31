@@ -6,5 +6,5 @@
       use_sudo: yes
     - username: devuser3
       use_sudo: yes
-    - username: svcgcpdev
+    - username: dev01
       use_sudo: yes

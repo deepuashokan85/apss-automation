@@ -2,35 +2,7 @@
 
 # List of groups to create
   group_list:
-    - name:   ariba
-      gid:    101
-    - name:   dba
-      gid:    200
-    - name:   mysql
-      gid:    10006
-    - name:   mysqlbkp
-      gid:    12000
-    - name:   splunk
-      gid:    10011
-    - name:   sysadmin
-      gid:    1111
-    - name:   redislabs
-      gid:    4961
-    - name:   clam
-      gid:    10007
-    - name:   supergroup
-      gid:    1112
-    - name:   sshtunnel
-      gid:    77
-    - name:   sapsys
-      gid:    79
     - name:   ops
       gid:    510
-    - name:   monitor
-      gid:    202
-    - name:   safeword
-      gid:    600
     - name:   nginx
       gid:    6500
-    - name:   safeguard
-      gid:    199

@@ -6,5 +6,3 @@
       use_sudo: no
     - username: stguser3
       use_sudo: no
-    - username: svcgcpstg
-      use_sudo: yes

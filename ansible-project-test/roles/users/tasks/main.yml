@@ -4,7 +4,7 @@
     user:
       name:     "{{ item.username }}"
       password: $6$Cld91pcR$/FwVs5ge678JX/iYwitT5KY0nGB4.qVLX7VnXEgEX4fx0s3STQ0ttbZdSe.1332M0GMLAbZ89PLY.E04CEOLW.
-      group:    "ariba"
+      group:    "testgrp"
       state:    present
     with_items:
           - "{{ users }}"
