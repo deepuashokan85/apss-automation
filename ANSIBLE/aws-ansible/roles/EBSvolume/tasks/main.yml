@@ -1,0 +1,7 @@
+---
+- local_action:
+    module: ec2_vol
+    instance: i-0ae21d533d003759e
+    volume_size: 1
+    device_name: sdb
+    region: "{{ region }}"

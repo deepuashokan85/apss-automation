@@ -1,0 +1,6 @@
+---
+
+name: "{{ ELB_name }}"
+security_group_ids: "{{ securitygroup_ids }}"
+region: "{{ region }}"
+subnets: "{{ subnet_ids }}"

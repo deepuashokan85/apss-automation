@@ -1,4 +1,9 @@
 ---
+- name: Create a ec2 instance
+  hosts: localhost
+  gather_facts: False
+
+  tasks:
     - name: Launch instance
       ec2:
          key_name: "{{ key_name }}"
@@ -6,7 +11,12 @@
          instance_type: "{{ instance_type }}"
          image: "{{ image }}"
          wait: true
+         count: 2
+         instance_tags:
+            db: postgres        
          region: "{{ region }}"
-         vpc_subnet_id: subnet-27c8b04f
+         vpc_subnet_id: subnet-aea47d80
          assign_public_ip: yes
+         aws_access_key: "{{ aws_access_key }}"
+         aws_secret_key: "{{ aws_secret_key }}"
       register: ec2

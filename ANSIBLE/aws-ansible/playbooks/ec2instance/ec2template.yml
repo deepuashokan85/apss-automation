@@ -1,0 +1,16 @@
+---
+- name: Create a ec2 instance
+  hosts: localhost
+  gather_facts: False
+  vars_files:
+    - ../../vars/sg_var.yml
+    - ../../vars/s3bucket_var.yml
+    - ../../vars/ec2_var.yml
+    - ../../vars/ebsvolume_var.yml
+    - ../../vars/elbcreation_var.yml
+  roles:
+    - role: sgcreation
+    - role: s3bucket
+    - role: ec2-creation
+    - role: EBSvolume
+    - role: ELB-creation

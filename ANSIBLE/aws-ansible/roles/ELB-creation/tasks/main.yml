@@ -1,0 +1,16 @@
+---
+
+- local_action:
+    module: ec2_elb_lb
+    state: present
+    name: "{{ ELB_name }}"
+    security_group_ids: "{{ securitygroup_ids }}"
+    region: "{{ region }}"
+    subnets: "{{ subnets }}"
+    purge_subnets: yes
+    instance_ids: "{{ instance_ids }}"
+    purge_instance_ids: true
+    listeners:
+      - protocol: http
+        load_balancer_port: 80
+        instance_port: 80

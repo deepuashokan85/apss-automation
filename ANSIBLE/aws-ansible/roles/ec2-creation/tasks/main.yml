@@ -1,12 +1,7 @@
+---
 - name: Create a ec2 instance
   hosts: localhost
   gather_facts: False
-  vars:
-    key_name: key_pair
-    instance_type: t2.micro
-    security_group: web-sg
-    image: ami-03291866
-    region: us-east-2
 
   tasks:
     - name: Launch instance
@@ -17,6 +12,8 @@
          image: "{{ image }}"
          wait: true
          region: "{{ region }}"
-         vpc_subnet_id: subnet-27c8b04f
+         vpc_subnet_id: subnet-535a5d1e
          assign_public_ip: yes
-      register: ec2
+         aws_access_key: "{{ aws_access_key }}"
+         aws_secret_key: "{{ aws_secret_key }}"
+     register: ec2
